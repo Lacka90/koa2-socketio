@@ -1,8 +1,6 @@
 import * as Mongoose from 'mongoose';
 import * as bluebird from 'bluebird';
 
-const db = Mongoose.connection;
-
 async function initDatabase() {
   const uri = 'mongodb://localhost:32773/serversocket'
   return new Promise((resolve, reject) => {
