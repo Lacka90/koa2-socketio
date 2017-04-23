@@ -1,28 +1,27 @@
 import * as Koa from 'koa';
+import * as mount from 'koa-mount';
+import * as Router from 'koa-router';
+import * as helmet from 'koa-helmet';
+import * as bodyParser from 'koa-bodyparser';
+
+import { init } from './database';
+import { api } from './api/api';
+
 const app = new Koa();
+app.use(bodyParser());
 
-// x-response-time
+init().then(async () => {
+  try {
+    app.use(helmet())
 
-app.use(async function (ctx, next) {
-  const start = new Date().getTime();
-  await next();
-  const ms = new Date().getTime() - start;
-  ctx.set('X-Response-Time', `${ms}ms`);
+    const routes = {
+      api: await api(),
+    }
+
+    app.use(mount('/api', routes.api))
+  } catch (err) {
+    console.error(err);
+  }
+
+  app.listen(3000);
 });
-
-// logger
-
-app.use(async function (ctx, next) {
-  const start = new Date().getTime();
-  await next();
-  const ms = new Date().getTime() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms} ms`);
-});
-
-// response
-
-app.use(ctx => {
-  ctx.body = 'Hello World';
-});
-
-app.listen(3000);
