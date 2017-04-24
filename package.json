@@ -4,7 +4,6 @@
   "description": "node koa2 app with socket.io communication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp"
   },
   "repository": {
@@ -28,6 +27,7 @@
     "gulp-livereload": "^3.8.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-notify": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.0",
     "gulp-typescript": "^3.1.6",
     "koa": "next",
     "koa-bodyparser": "^4.2.0",
@@ -35,9 +35,8 @@
     "koa-mount": "next",
     "koa-router": "next",
     "mongoose": "^4.9.5",
+    "socket.io": "^1.7.3",
     "typescript": "^2.2.2"
   },
-  "devDependencies": {
-    "nodemon": "^1.11.0"
-  }
+  "devDependencies": {}
 }

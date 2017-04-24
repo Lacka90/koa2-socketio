@@ -8,7 +8,7 @@ export async function conversationRoute() {
     ctx.body = await Conversation.find({});
   });
 
-  router.post('/create', async (ctx) => {
+  router.post('/', async (ctx) => {
     ctx.body = await new Conversation(ctx.request.body).save();
   });
 

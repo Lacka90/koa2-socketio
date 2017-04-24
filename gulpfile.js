@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var notify = require('gulp-notify');
 var nodemon = require('gulp-nodemon');
 var typescript = require('gulp-typescript');
+var sourcemaps = require('gulp-sourcemaps');
 var pjson = require('./package.json');
 var livereload = require('gulp-livereload');
 var tsProject = typescript.createProject('tsconfig.json', {
@@ -12,7 +13,15 @@ gulp.task('backendSrc', function() {
   var tsResult = tsProject.src()
     .pipe(tsProject());
 
-  return tsResult.js.pipe(gulp.dest('./build'));
+  return tsResult.js
+    .pipe(sourcemaps.write({
+      // Return relative source map root directories per file.
+      sourceRoot: function (file) {
+        var sourceFile = path.join(file.cwd, file.sourceMap.file);
+        return path.relative(path.dirname(sourceFile), file.cwd);
+      }
+    }))
+    .pipe(gulp.dest('./build'));
 });
 
 gulp.task('watch', function() {
