@@ -1,7 +1,7 @@
 import * as Router from 'koa-router';
-import { findAll, create } from '../../../dal/conversationDao/conversationDao';
+import { findAll, create } from './../../../dal/messageDao/messageDao';
 
-export async function conversationRoute() {
+export async function messageRoute() {
   const router = Router();
 
   router.get('/', async (ctx) => {

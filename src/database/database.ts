@@ -1,7 +1,7 @@
 import * as Mongoose from 'mongoose';
 import * as bluebird from 'bluebird';
 
-async function initDatabase() {
+async function init() {
   const uri = 'mongodb://localhost:32773/serversocket'
   return new Promise((resolve, reject) => {
     (Mongoose as any).Promise = bluebird;
@@ -15,8 +15,8 @@ async function initDatabase() {
 }
 
 let initPromise;
-export function init() {
+export function databaseInit() {
   return initPromise || (initPromise = (async () => {
-    await initDatabase();
+    await init();
   })());
 }
