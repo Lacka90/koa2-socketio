@@ -34,6 +34,7 @@
     "koa-helmet": "next",
     "koa-mount": "next",
     "koa-router": "next",
+    "koa-static-server": "^1.0.0",
     "mongoose": "^4.9.5",
     "socket.io": "^1.7.3",
     "typescript": "^2.2.2"

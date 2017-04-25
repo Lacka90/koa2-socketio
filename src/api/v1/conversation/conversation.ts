@@ -1,15 +1,15 @@
 import * as Router from 'koa-router';
-import { Conversation } from '../../../database/models/conversation';
+import { findAll, create } from '../../../dal/conversationDao/conversationDao';
 
 export async function conversationRoute() {
   const router = Router();
 
   router.get('/', async (ctx) => {
-    ctx.body = await Conversation.find({});
+    ctx.body = await findAll();
   });
 
   router.post('/', async (ctx) => {
-    ctx.body = await new Conversation(ctx.request.body).save();
+    ctx.body = await create(ctx.request.body);
   });
 
   return router;

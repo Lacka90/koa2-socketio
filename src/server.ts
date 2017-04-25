@@ -1,34 +1,25 @@
+import * as path from 'path';
 import * as Koa from 'koa';
 import * as mount from 'koa-mount';
 import * as Router from 'koa-router';
 import * as helmet from 'koa-helmet';
+import * as serve from 'koa-static-server';
 import * as bodyParser from 'koa-bodyparser';
-import * as Http from 'http';
-import * as socket from 'socket.io';
 
-import { init } from './database';
 import { api } from './api/api';
-
-const app = new Koa();
-app.use(bodyParser());
+import { socketInit } from './socket/socket';
 
 export async function start() {
-  return await init().then(async () => {
-    try {
-      app.use(helmet())
+  const app = new Koa();
+  app.use(bodyParser());
 
-      const routes = {
-        api: await api(),
-      }
+  app.use(serve({rootDir: 'src/client', rootPath: '/web'}))
 
-      app.use(mount('/api', routes.api))
-    } catch (err) {
-      console.error(err);
-    }
+  app.use(helmet())
 
-    const server:Http.Server = Http.createServer(app.callback());
-    const io = socket(server)
+  app.use(mount('/api', await api()))
 
-    server.listen(3000);
-  });
+  const server = socketInit(app);
+
+  server.listen(3000);
 }

@@ -1,3 +1,4 @@
+import { databaseInit } from './database/database';
 import { start } from './server';
 
-start();
+databaseInit().then(start);
