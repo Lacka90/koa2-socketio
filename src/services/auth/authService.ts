@@ -29,7 +29,7 @@ export class AuthService {
     const passwordHash = this.encode(password);
 
     const userService = UserService.getInstance();
-    const user = await userService.register(username, passwordHash);
+    const user = await userService.login(username, passwordHash);
 
     if (!user) {
       throw Boom.notFound('user not found');

@@ -14,7 +14,22 @@ export class UserDao {
     return User.findById(userId).lean();
   }
 
+  async findByNameAndPass(username: string, password: string) {
+    return User.findOne({
+      username,
+      password,
+    }).lean();
+  }
+
   async create(user: any) {
     return new User(user).save();
+  }
+
+  async getAvailableUsers(userId: string) {
+    return User.find({
+      // _id: {
+      //   $ne: userId,
+      // },
+    });
   }
 }
