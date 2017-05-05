@@ -18,12 +18,12 @@ export function jwtMiddleware({
       return next();
     }
 
-    const hcTokenString = token.split(' ')[1];
+    const tokenString = token.split(' ')[1];
 
     try {
-      const decoded = await jwtVerify(hcTokenString, secret);
+      const decoded = await jwtVerify(tokenString, secret);
       ctx.userId = decoded.userId;
-      ctx.hcToken = decoded;
+      ctx.token = decoded;
 
       return next();
     } catch (err) {
@@ -38,12 +38,12 @@ export function jwtMiddleware({
 function _jwtSign(data: any, expires: string) {
   return new Promise<string>((resolve, reject) => jwt.sign(
       data,
-      config.token.secret,
-      { expiresIn: expires, algorithm: config.token.algorithm },
+      config.jwt.secret,
+      { expiresIn: expires, algorithm: config.jwt.algorithm },
       (err, result) => err ? reject(err) : resolve(result),
     ));
 }
 
 export function jwtSign(data: any) {
-  return _jwtSign(data, config.token.expires);
+  return _jwtSign(data, config.jwt.expires);
 }

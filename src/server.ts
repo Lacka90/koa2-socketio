@@ -6,7 +6,7 @@ import * as helmet from 'koa-helmet';
 import * as serve from 'koa-static-server';
 import * as bodyParser from 'koa-bodyparser';
 import * as cors from 'koa2-cors';
-import { config } from './config';
+import { config } from './config/index';
 
 import { jwtMiddleware } from './middlewares/jwtMiddleware';
 
@@ -23,11 +23,11 @@ export async function start() {
 
   app.use(helmet())
 
-  app.use(jwtMiddleware({ secret: config.token.secret }))
+  app.use(jwtMiddleware({ secret: config.jwt.secret }))
 
   app.use(mount('/api', await api()))
 
   const server = socketInit(app);
 
-  server.listen(3000);
+  server.listen(config.port);
 }
