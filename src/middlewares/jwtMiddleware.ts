@@ -28,7 +28,7 @@ export function jwtMiddleware({
       return next();
     } catch (err) {
       if (err instanceof jwt.TokenExpiredError) {
-        return ctx.throw('TokenExpriedError', 498);
+        return ctx.throw('TokenExpired', 511);
       }
       return next(err);
     }

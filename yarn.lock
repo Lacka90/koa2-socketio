@@ -327,10 +327,10 @@ body-parser@~1.14.0:
     type-is "~1.6.10"
 
 boom@2.x.x:
-  version "2.10.1"
-  resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/boom/-/boom-2.2.2.tgz#dd5af390bbb72cb8b32ded2d7095b8b56948677a"
   dependencies:
-    hoek "2.x.x"
+    hoek "1.x.x"
 
 boom@^4.3.1:
   version "4.3.1"
@@ -1479,6 +1479,10 @@ helmet@^3.0.0:
 hide-powered-by@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hide-powered-by/-/hide-powered-by-1.0.0.tgz#4a85ad65881f62857fc70af7174a1184dccce32b"
+
+hoek@1.x.x:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/hoek/-/hoek-1.5.2.tgz#d1038115c3046faf11bb089c25e8b409b1b7d8ca"
 
 hoek@2.x.x:
   version "2.16.3"
