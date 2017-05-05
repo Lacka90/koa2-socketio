@@ -239,6 +239,13 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
+babel-runtime@^6.20.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.10.0"
+
 bach@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/bach/-/bach-1.1.0.tgz#cfe542db925cb37051fc490ad102c73bcb258a84"
@@ -327,10 +334,10 @@ body-parser@~1.14.0:
     type-is "~1.6.10"
 
 boom@2.x.x:
-  version "2.10.1"
-  resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/boom/-/boom-2.2.2.tgz#dd5af390bbb72cb8b32ded2d7095b8b56948677a"
   dependencies:
-    hoek "2.x.x"
+    hoek "1.x.x"
 
 boom@^4.3.1:
   version "4.3.1"
@@ -565,6 +572,10 @@ copy-props@^1.4.1:
 copy-to@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/copy-to/-/copy-to-2.0.1.tgz#2680fbb8068a48d08656b6098092bdafc906f4a5"
+
+core-js@^2.4.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.4.1.tgz#4de911e667b0eae9124e34254b53aea6fc618d3e"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -1480,6 +1491,10 @@ hide-powered-by@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hide-powered-by/-/hide-powered-by-1.0.0.tgz#4a85ad65881f62857fc70af7174a1184dccce32b"
 
+hoek@1.x.x:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/hoek/-/hoek-1.5.2.tgz#d1038115c3046faf11bb089c25e8b409b1b7d8ca"
+
 hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
@@ -1938,6 +1953,12 @@ koa-static-server@^1.0.0:
   resolved "https://registry.yarnpkg.com/koa-static-server/-/koa-static-server-1.0.0.tgz#cf35af257a681c28a9a8701b89f55f75ab0ac269"
   dependencies:
     koa-send "~3.2.0"
+
+koa2-cors@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/koa2-cors/-/koa2-cors-2.0.3.tgz#43209a32dff6cf50d446d77a44fac9c95bb87c28"
+  dependencies:
+    babel-runtime "^6.20.0"
 
 koa@next:
   version "2.0.0-alpha.8"
@@ -2859,6 +2880,10 @@ rechoir@^0.6.2:
 referrer-policy@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/referrer-policy/-/referrer-policy-1.1.0.tgz#35774eb735bf50fb6c078e83334b472350207d79"
+
+regenerator-runtime@^0.10.0:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
 
 regex-cache@^0.4.2:
   version "0.4.3"
