@@ -19,7 +19,7 @@ export async function start() {
 
   app.use(bodyParser());
 
-  app.use(serve({rootDir: 'src/client', rootPath: '/web'}))
+  app.use(serve({rootDir: 'src/client', rootPath: '/client'}))
 
   app.use(helmet())
 
