@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import * as Koa from 'koa';
 import * as mount from 'koa-mount';
 import * as Router from 'koa-router';
@@ -19,7 +20,7 @@ export async function start() {
 
   app.use(bodyParser());
 
-  app.use(serve({rootDir: 'src/www', rootPath: '/client'}))
+  app.use(serve({rootDir: path.join(__dirname, 'www'), rootPath: ''}))
 
   app.use(helmet())
 
