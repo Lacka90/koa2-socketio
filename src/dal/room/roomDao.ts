@@ -1,4 +1,4 @@
-import { Room } from './../../database/models/Room';
+import { Room } from './../../database/models/room';
 
 export class RoomDao {
   private static instance: RoomDao = null;
