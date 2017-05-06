@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "serve": "gulp dev",
-    "postinstall": "./scripts/client-build.sh"
+    "serve": "gulp dev"
   },
   "repository": {
     "type": "git",
