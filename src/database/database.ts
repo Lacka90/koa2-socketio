@@ -4,6 +4,7 @@ import { config } from '../config';
 
 async function init() {
   const uri = `${config.database.url}/ionic-webrtc`;
+
   return new Promise((resolve, reject) => {
     (Mongoose as any).Promise = bluebird;
     Mongoose.connect(uri, (error) => {
