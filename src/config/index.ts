@@ -28,7 +28,7 @@ const conf = convict({
   port: {
     doc: 'The port to bind.',
     format: String,
-    default: '3005',
+    default: '3000',
     env: 'PORT',
     arg: 'port',
   },
