@@ -13,7 +13,7 @@ dotenv.config({
 const conf = convict({
   env: {
     doc: 'The application environment.',
-    format: ['prod', 'dev', 'test', 'stage', 'ci'],
+    format: ['production', 'dev', 'test', 'stage', 'ci'],
     default: 'dev',
     env: 'NODE_ENV',
     arg: 'env',
