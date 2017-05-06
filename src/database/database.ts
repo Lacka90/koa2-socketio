@@ -1,6 +1,6 @@
 import * as Mongoose from 'mongoose';
 import * as bluebird from 'bluebird';
-import { config } from '../config/index';
+import { config } from '../config';
 
 async function init() {
   const uri = `${config.database.url}/ionic-webrtc`;

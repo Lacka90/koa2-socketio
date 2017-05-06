@@ -6,7 +6,7 @@ import * as helmet from 'koa-helmet';
 import * as serve from 'koa-static-server';
 import * as bodyParser from 'koa-bodyparser';
 import * as cors from 'koa2-cors';
-import { config } from './config/index';
+import { config } from './config';
 
 import { jwtMiddleware } from './middlewares/jwtMiddleware';
 
