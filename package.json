@@ -4,7 +4,8 @@
   "description": "node koa2 app with socket.io communication",
   "main": "index.js",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "build:client": "./scripts/client-build.sh"
   },
   "repository": {
     "type": "git",
