@@ -41,4 +41,5 @@ gulp.task('watch', function() {
   });
 });
 
-gulp.task('default', gulp.series(['backendSrc', 'watch']), function() {});
+gulp.task('default', gulp.series(['backendSrc']), function() {});
+gulp.task('dev', gulp.series(['backendSrc', 'watch']), function() {});
