@@ -7,6 +7,4 @@ yarn install
 yarn ionic:build --prod
 
 cd ..
-cp -R webapp/www dist/
-
-node dist/index.js
+node ./dist/index.js

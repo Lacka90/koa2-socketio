@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "rm -rf ./dist && nohup ./scripts/build.sh &",
+    "start:dev": "rm -rf ./dist && ./scripts/build.sh",
     "serve": "gulp dev"
   },
   "engines": {

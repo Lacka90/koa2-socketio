@@ -20,7 +20,7 @@ export async function start() {
 
   app.use(bodyParser());
 
-  app.use(serve({rootDir: path.join(__dirname, 'www'), rootPath: ''}))
+  app.use(serve({rootDir: path.join(__dirname, '../webapp/www'), rootPath: ''}))
 
   app.use(helmet())
 
