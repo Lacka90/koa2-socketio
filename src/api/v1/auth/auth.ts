@@ -23,7 +23,7 @@ export async function authRoute() {
       throw Boom.badRequest('Username or Password not found');
     }
     const authService = AuthService.getInstance();
-    const userId = await authService.login(ctx, username, password);
+    const userId = await authService.login(username, password);
     
     const userData = {
       userId,

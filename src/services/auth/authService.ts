@@ -1,4 +1,4 @@
-import * as Boom from 'koa-boom';
+import * as Boom from 'boom';
 import * as _ from 'lodash';
 import { UserService } from './../user/userService';
 import { AuthDao } from '../../dal/auth/authDao';
@@ -25,14 +25,14 @@ export class AuthService {
     return _.omit(user, ['password']);
   }
 
-  async login(ctx, username: string, password: string) {
+  async login(username: string, password: string) {
     const passwordHash = this.encode(password);
 
     const userService = UserService.getInstance();
     const user = await userService.login(username, passwordHash);
 
     if (!user) {
-      throw Boom.notFound(ctx, 'user not found');
+      throw new Error('user not found');
     }
 
     return user._id;
