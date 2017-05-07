@@ -4,7 +4,7 @@
   "description": "node koa2 app with socket.io communication",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf ./dist && ./scripts/build.sh",
+    "start": "rm -rf ./dist && nohup ./scripts/build.sh &",
     "serve": "gulp dev"
   },
   "engines": {
