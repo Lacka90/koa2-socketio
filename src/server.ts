@@ -9,6 +9,8 @@ import * as bodyParser from 'koa-bodyparser';
 import * as cors from 'koa2-cors';
 import { config } from './config';
 
+console.log('config', config);
+
 import { jwtMiddleware } from './middlewares/jwtMiddleware';
 
 import { api } from './api/api';
