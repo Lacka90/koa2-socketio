@@ -4,7 +4,7 @@ gulp
 
 cd webapp
 yarn install
-npm run ionic:build --prod
+yarn ionic:build --prod
 
 cd ..
 cp -R webapp/www build/
