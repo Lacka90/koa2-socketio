@@ -19,6 +19,11 @@ import { socketInit } from './socket/socket';
 export async function start() {
   const app = new Koa();
 
+  app.use(error((err, ctx) => {
+    console.error('ERROR MW', err);
+    ctx.throw(err.status, err.message);
+  }));
+
   app.use(bodyParser());
 
   const webPath = path.join(__dirname, '../www');
@@ -31,11 +36,6 @@ export async function start() {
   app.use(jwtMiddleware({ secret: config.jwt.secret }));
 
   app.use(mount('/api', await api()));
-
-  app.use(error((err, ctx) => {
-    console.error('ERROR MW', err);
-    ctx.throw(err.status, err.message);
-  }));
 
   const server = socketInit(app);
 
