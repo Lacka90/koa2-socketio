@@ -9,8 +9,6 @@ import * as bodyParser from 'koa-bodyparser';
 import { error } from 'koa-2-error-handler';
 import { config } from './config';
 
-console.log('config', config);
-
 import { jwtMiddleware } from './middlewares/jwtMiddleware';
 
 import { api } from './api/api';
@@ -21,13 +19,12 @@ export async function start() {
 
   app.use(error((err, ctx) => {
     ctx.status = err.output.statusCode;
-    ctx.body = err.output.payload
+    ctx.body = err.output.payload;
   }));
 
   app.use(bodyParser());
 
   const webPath = path.join(__dirname, '../www');
-  console.log('webpath', webPath);
 
   app.use(serve({rootDir: webPath, rootPath: ''}));
 
@@ -38,8 +35,6 @@ export async function start() {
   app.use(mount('/api', await api()));
 
   const server = socketInit(app);
-
-  console.log('Server start at port: ' + config.port);
 
   server.listen(config.port, config.host);
 }
