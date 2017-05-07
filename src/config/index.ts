@@ -18,13 +18,6 @@ const conf = convict({
     env: 'NODE_ENV',
     arg: 'env',
   },
-  ip: {
-    doc: 'The IP address to bind.',
-    format: 'ipaddress',
-    default: '127.0.0.1',
-    env: 'IP_ADDRESS',
-    arg: 'ip',
-  },
   port: {
     doc: 'The port to bind.',
     format: Number,
