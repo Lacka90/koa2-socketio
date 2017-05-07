@@ -35,5 +35,5 @@ export async function start() {
 
   console.log('Server start at port: ' + config.port);
 
-  server.listen(config.port);
+  server.listen(config.port, config.host);
 }
