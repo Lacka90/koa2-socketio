@@ -27,9 +27,9 @@ export class UserDao {
 
   async getAvailableUsers(userId: string) {
     return User.find({
-      // _id: {
-      //   $ne: userId,
-      // },
+      _id: {
+        $ne: userId,
+      },
     });
   }
 }
