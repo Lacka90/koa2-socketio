@@ -21,7 +21,7 @@ gulp.task('backendSrc', function() {
         return path.relative(path.dirname(sourceFile), file.cwd);
       }
     }))
-    .pipe(gulp.dest('./build'));
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('watch', function() {
@@ -29,13 +29,13 @@ gulp.task('watch', function() {
 
   nodemon({
     // the script to run the app
-    script: './build/index.js',
+    script: './dist/index.js',
     tasks: ['backendSrc'],
     ext: 'ts json', //den vazw ext: ts json .js gt exoume ts isws gia json to xreiastoume alla 9a exei confict me to serverAssets 9a dw.
-    ignore: ['build/', 'gulpfile.js', 'package.json', 'tsconfig.json']
+    ignore: ['dist/', 'gulpfile.js', 'package.json', 'tsconfig.json']
   }).on('restart', function() {
     // when the app has restarted, run livereload.
-    gulp.src('./build/index.js')
+    gulp.src('./dist/index.js')
       .pipe(livereload())
       .pipe(notify('Server restarted, reloading page...'));
   });
