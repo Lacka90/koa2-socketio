@@ -33,7 +33,7 @@ export async function start() {
   app.use(mount('/api', await api()));
 
   app.use(error((err, ctx) => {
-    console.error(err);
+    console.error('ERROR MW', err);
     ctx.throw(err.status, err.message);
   }));
 
