@@ -1590,6 +1590,10 @@ http-signature@~1.1.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+http-status-codes@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/http-status-codes/-/http-status-codes-1.1.6.tgz#7a75d2b94d35a93183f39a0c8a6eb8963c20e50d"
+
 iconv-lite@0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
@@ -1916,6 +1920,12 @@ kind-of@^3.0.2, kind-of@^3.1.0:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.1.0.tgz#475d698a5e49ff5e53d14e3e732429dc8bf4cf47"
   dependencies:
     is-buffer "^1.0.2"
+
+koa-2-error-handler@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/koa-2-error-handler/-/koa-2-error-handler-0.0.6.tgz#7fb1b1dc98666cb9d240857498ed526ce76415e7"
+  dependencies:
+    http-status-codes "^1.1.6"
 
 koa-bodyparser@^4.2.0:
   version "4.2.0"

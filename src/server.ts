@@ -6,6 +6,7 @@ import * as Router from 'koa-router';
 import * as helmet from 'koa-helmet';
 import * as serve from 'koa-static-server';
 import * as bodyParser from 'koa-bodyparser';
+import { error } from 'koa-2-error-handler';
 import { config } from './config';
 
 console.log('config', config);
@@ -30,6 +31,11 @@ export async function start() {
   app.use(jwtMiddleware({ secret: config.jwt.secret }));
 
   app.use(mount('/api', await api()));
+
+  app.use(error((err, ctx) => {
+    console.error(err);
+    ctx.throw(err.status, err.message);
+  }));
 
   const server = socketInit(app);
 
