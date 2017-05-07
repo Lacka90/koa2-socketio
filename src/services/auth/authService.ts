@@ -32,7 +32,7 @@ export class AuthService {
     const user = await userService.login(username, passwordHash);
 
     if (!user) {
-      throw new Error('user not found');
+      throw Boom.notFound('user not found');
     }
 
     return user._id;
