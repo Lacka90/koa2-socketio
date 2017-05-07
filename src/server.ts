@@ -30,5 +30,7 @@ export async function start() {
 
   const server = socketInit(app);
 
+  console.log('Server start at port: ' + config.port);
+
   server.listen(config.port);
 }
