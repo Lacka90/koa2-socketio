@@ -1,12 +1,14 @@
 #!/bin/bash
 
 gulp
-
+echo $PWD
 cd webapp
-yarn install
-yarn ionic:build --prod
+echo $PWD
+npm install
+npm run ionic:build --prod
 
 cd ..
+echo $PWD
 cp -R webapp/www build/
 
 node dist/index.js
