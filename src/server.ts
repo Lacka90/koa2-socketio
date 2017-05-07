@@ -20,8 +20,9 @@ export async function start() {
   const app = new Koa();
 
   app.use(error((err, ctx) => {
-    console.error('ERROR MW', err);
-    ctx.throw(err.status, err.message);
+    console.error('ERROR MW', err.output.statusCode);
+    ctx.status = err.output.statusCode;
+    ctx.body = err.output.payload
   }));
 
   app.use(bodyParser());
