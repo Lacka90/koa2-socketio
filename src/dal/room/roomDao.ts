@@ -31,7 +31,6 @@ export class RoomDao {
   }
 
   async updateWithAnswer(userId: string, answer: string) {
-    console.log('ANSWERROOM', userId)
     return Room.findOneAndUpdate({
       owner: userId,
     }, {

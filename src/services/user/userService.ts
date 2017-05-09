@@ -23,6 +23,17 @@ export class UserService {
     return user;
   }
 
+  async getBySocketId(socketId: string) {
+    const userDao = UserDao.getInstance();
+    const user = await userDao.getBySocketId(socketId);
+
+    if (!user) {
+      throw Boom.notFound('user not found');
+    }
+
+    return user;
+  }
+
   async login(username: string, passwordHash: string) {
     const userDao = UserDao.getInstance();
     const user = await userDao.findByNameAndPass(username, passwordHash);

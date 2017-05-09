@@ -14,6 +14,10 @@ export class UserDao {
     return User.findById(userId).lean();
   }
 
+  async getBySocketId(socketId: string) {
+    return User.findOne({ socketId }).lean();
+  }
+
   async findByNameAndPass(username: string, password: string) {
     return User.findOne({
       username,
@@ -27,9 +31,10 @@ export class UserDao {
 
   async getAvailableUsers(userId: string) {
     return User.find({
-      _id: {
-        $ne: userId,
-      },
+      $and: [
+        { _id: { $ne: userId } },
+        { socketId: { $ne: null } },
+      ],
     });
   }
 

@@ -10,14 +10,25 @@ export function socketInit(app) {
   io.attach( app )
 
   io.on('connection', (ctx, data) => {
-    console.log('a user connected', data);
     sockets[ctx.socket.id] = ctx.socket;
-    io.broadcast('news', { id: ctx.socket.id, userId: ctx.userId });
+  });
+
+  io.on('disconnect', async (ctx, data) => {
+    console.log('a user disconnected', data, ctx.socket.id);
+    const userService = UserService.getInstance();
+    const user = await userService.getBySocketId(ctx.socket.id);
+    await userService.updateSocketId(user._id, null);
+    delete sockets[ctx.socket.id];
+
+    io.broadcast('userDisconnected', { userId: user._id });
   });
 
   io.on('socketChange', async (ctx, data) => {
     const userService = UserService.getInstance();
     await userService.updateSocketId(data.userId, ctx.socket.id);
+
+    const user = await userService.getById(data.userId);
+    io.broadcast('userConnected', { user });
   });
 }
 

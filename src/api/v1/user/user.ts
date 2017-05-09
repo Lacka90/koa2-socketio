@@ -36,7 +36,7 @@ export async function userRoute() {
     const userService = UserService.getInstance();
     await userService.connectRoom(userId, connection);
     const room = await userService.getRoom(userId);
-    await sendMessage(userId, 'userConnected', room);
+    await sendMessage(userId, 'userCalling', room);
     ctx.body = { room };
   });
 
