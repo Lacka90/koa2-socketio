@@ -31,8 +31,8 @@ gulp.task('watch', function() {
     // the script to run the app
     script: './dist/index.js',
     tasks: ['backendSrc'],
-    ext: 'ts json', //den vazw ext: ts json .js gt exoume ts isws gia json to xreiastoume alla 9a exei confict me to serverAssets 9a dw.
-    ignore: ['dist/', 'gulpfile.js', 'package.json', 'tsconfig.json']
+    ext: 'ts json js css html', //den vazw ext: ts json .js gt exoume ts isws gia json to xreiastoume alla 9a exei confict me to serverAssets 9a dw.
+    ignore: ['dist/', '/webapp', 'gulpfile.js', 'package.json', 'tsconfig.json']
   }).on('restart', function() {
     // when the app has restarted, run livereload.
     gulp.src('./dist/index.js')

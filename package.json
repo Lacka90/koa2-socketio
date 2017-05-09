@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "rm -rf ./dist && gulp && node ./dist/index.js",
-    "start:dev": "rm -rf ./dist && ./scripts/build.sh",
+    "update:client": "./scripts/update_client.sh",
     "serve": "gulp dev"
   },
   "engines": {
@@ -48,6 +48,7 @@
     "koa-helmet": "^3.1.0",
     "koa-mount": "^3.0.0",
     "koa-router": "^7.0.1",
+    "koa-socket": "^4.4.0",
     "koa-static-server": "^1.0.0",
     "koa2-cors": "^2.0.3",
     "lodash": "^4.17.4",
