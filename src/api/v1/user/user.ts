@@ -1,6 +1,7 @@
 import * as Boom from 'boom';
 import * as Router from 'koa-router';
 import { UserService } from './../../../services/user/userService';
+import { sendMessage } from '../../../socket/socket';
 
 export async function userRoute() {
   const router = Router();
@@ -33,7 +34,9 @@ export async function userRoute() {
       throw Boom.notFound('UserId not found');
     }
     const userService = UserService.getInstance();
-    const room = await userService.connectRoom(userId, connection);
+    await userService.connectRoom(userId, connection);
+    const room = await userService.getRoom(userId);
+    await sendMessage(userId, 'userConnected', room);
     ctx.body = { room };
   });
 

@@ -60,4 +60,10 @@ export class UserService {
     const roomDao = RoomDao.getInstance();
     return roomDao.updateWithAnswer(userId, answer);
   }
+
+  async updateSocketId(userId: string, socketId: string) {
+    const userDao = UserDao.getInstance();
+
+    return userDao.updateSocketId(userId, socketId);
+  }
 }

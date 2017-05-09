@@ -18,8 +18,11 @@ export async function start() {
   const app = new Koa();
 
   app.use(error((err, ctx) => {
-    ctx.status = err.output.statusCode;
-    ctx.body = err.output.payload;
+    console.log('DEBUG', JSON.stringify(err, null, 2));
+    if (err.output) {
+      ctx.status = err.output.statusCode;
+      ctx.body = err.output.payload.message;
+    }
   }));
 
   app.use(bodyParser());
@@ -34,7 +37,7 @@ export async function start() {
 
   app.use(mount('/api', await api()));
 
-  const server = socketInit(app);
+  socketInit(app);
 
-  server.listen(config.port, config.host);
+  app.listen(config.port, config.host);
 }

@@ -24682,6 +24682,13 @@ page-home .self-video {
   right: 0;
 }
 
+page-login .auth-buttons {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  right: 1em;
+}
+
 page-remote .video-container {
   position: relative;
   background-color: lightgray;

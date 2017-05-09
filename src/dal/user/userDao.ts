@@ -32,4 +32,8 @@ export class UserDao {
       },
     });
   }
+
+  async updateSocketId(userId: string, socketId: string) {
+    return User.findByIdAndUpdate(userId, { socketId });
+  }
 }

@@ -1,15 +1,29 @@
+import { UserService } from './../services/user/userService';
 import * as Http from 'http';
-import * as socket from 'socket.io';
 
-export function socketInit(app): Http.Server {
-  const server: Http.Server = Http.createServer(app.callback());
-  const io = socket(server)
+import * as Socket from 'koa-socket';
 
-  io.on('connection', (socket) => {
-    console.log('a user connected');
-    socket.emit('news', 'asd');
-    io.emit('new', 'aaaaaaa')
+const sockets = {};
+
+export function socketInit(app) {
+  const io = new Socket()
+  io.attach( app )
+
+  io.on('connection', (ctx, data) => {
+    console.log('a user connected', data);
+    sockets[ctx.socket.id] = ctx.socket;
+    io.broadcast('news', { id: ctx.socket.id, userId: ctx.userId });
   });
 
-  return server;
+  io.on('socketChange', async (ctx, data) => {
+    const userService = UserService.getInstance();
+    await userService.updateSocketId(data.userId, ctx.socket.id);
+  });
+}
+
+export async function sendMessage(userId: string, subject: string, message: string) {
+  const userService = UserService.getInstance();
+  const user = await userService.getById(userId);
+
+  sockets[user.socketId].emit(subject, message);
 }

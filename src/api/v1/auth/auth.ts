@@ -35,6 +35,9 @@ export async function authRoute() {
   router.post('/register', async (ctx) => {
     const username = ctx.request.body.username;
     const password = ctx.request.body.password;
+    if (!username || !password) {
+      throw Boom.badRequest('Username or Password not found');
+    }
     const authService = AuthService.getInstance();
     const user = await authService.register(username, password);
     ctx.body = { user };
