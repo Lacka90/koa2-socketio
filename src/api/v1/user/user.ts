@@ -17,7 +17,7 @@ export async function userRoute() {
   });
 
   router.post('/room/offer', async (ctx) => {
-    const userId = ctx.userId;
+    const userId = ctx.request.body['userId'];
     const connection = ctx.request.body['connection'];
     if (!userId) {
       throw Boom.notFound('UserId not found');
