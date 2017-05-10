@@ -19,7 +19,7 @@ export class AuthService {
     const user = await userService.getById(userId);
 
     if (!user) {
-      throw Boom.notFound('user not found');
+      throw Boom.notFound('user not found', userId);
     }
 
     return _.omit(user, ['password']);

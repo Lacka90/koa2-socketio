@@ -17,7 +17,7 @@ export class UserService {
     const user = await userDao.getById(userId);
 
     if (!user) {
-      throw Boom.notFound('user not found');
+      throw Boom.notFound('user not found', userId);
     }
 
     return user;
@@ -28,7 +28,7 @@ export class UserService {
     const user = await userDao.getBySocketId(socketId);
 
     if (!user) {
-      throw Boom.notFound('user not found');
+      throw Boom.notFound('user not found by socketid', socketId);
     }
 
     return user;
