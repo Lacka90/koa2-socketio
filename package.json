@@ -6,6 +6,7 @@
   "scripts": {
     "start": "rm -rf ./dist && gulp && node ./dist/index.js",
     "update:client": "./scripts/update_client.sh",
+    "build:client": "./scripts/update_client.sh prod",
     "serve": "gulp dev"
   },
   "engines": {
