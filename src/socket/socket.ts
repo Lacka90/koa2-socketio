@@ -13,7 +13,6 @@ export function socketInit(app) {
     sockets[ctx.socket.id] = ctx.socket;
 
     ctx.socket.on('disconnect', async (data) => {
-      console.log('a user disconnected', data, ctx.socket.id);
       const userService = UserService.getInstance();
       const user = await userService.getBySocketId(ctx.socket.id);
       await userService.updateSocketId(user._id, null);

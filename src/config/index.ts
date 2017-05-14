@@ -13,7 +13,7 @@ dotenv.config({
 const conf = convict({
   env: {
     doc: 'The application environment.',
-    format: ['production', 'dev', 'test', 'stage', 'ci'],
+    format: ['production', 'dev', 'test'],
     default: 'dev',
     env: 'NODE_ENV',
     arg: 'env',
@@ -38,8 +38,15 @@ const conf = convict({
       format: String,
       default: 'mongodb://localhost:32773',
       env: 'DB_URL',
-      arg: 'db',
+      arg: 'url',
     },
+    collectionName: {
+      doc: 'Database collection name',
+      format: String,
+      default: 'default-webrtc',
+      env: 'DB_COLLECTION',
+      arg: 'collectionName',
+    }
   },
   jwt: {
     secret: {
@@ -67,12 +74,10 @@ const conf = convict({
 } as any);
 
 // Load environment dependent configuration
-// const env = conf.get('env');
-// conf.loadFile(path.normalize(`${__dirname}/${env}.json`));
+const env = conf.get('env');
+conf.loadFile(path.normalize(`${__dirname}/${env}.json`));
 
 // Perform validation
 conf.validate({allowed: 'strict'});
-
-//console.log(`ENV ${JSON.stringify(conf.getProperties(), null ,2)}`);
 
 export const config = conf.getProperties() as any;
