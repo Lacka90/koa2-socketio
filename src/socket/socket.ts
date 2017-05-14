@@ -11,24 +11,24 @@ export function socketInit(app) {
 
   io.on('connection', (ctx, data) => {
     sockets[ctx.socket.id] = ctx.socket;
-  });
 
-  io.on('disconnect', async (ctx, data) => {
-    console.log('a user disconnected', data, ctx.socket.id);
-    const userService = UserService.getInstance();
-    const user = await userService.getBySocketId(ctx.socket.id);
-    await userService.updateSocketId(user._id, null);
-    delete sockets[ctx.socket.id];
+    ctx.socket.on('disconnect', async (data) => {
+      console.log('a user disconnected', data, ctx.socket.id);
+      const userService = UserService.getInstance();
+      const user = await userService.getBySocketId(ctx.socket.id);
+      await userService.updateSocketId(user._id, null);
+      delete sockets[ctx.socket.id];
 
-    io.broadcast('userDisconnected', { userId: user._id });
-  });
+      io.broadcast('userDisconnected', { userId: user._id });
+    });
 
-  io.on('socketChange', async (ctx, data) => {
-    const userService = UserService.getInstance();
-    await userService.updateSocketId(data.userId, ctx.socket.id);
+    ctx.socket.on('socketChange', async (data) => {
+      const userService = UserService.getInstance();
+      await userService.updateSocketId(data.userId, ctx.socket.id);
 
-    const user = await userService.getById(data.userId);
-    io.broadcast('userConnected', { user });
+      const user = await userService.getById(data.userId);
+      io.broadcast('userConnected', { user });
+    });
   });
 }
 
