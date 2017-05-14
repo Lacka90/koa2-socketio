@@ -8,7 +8,7 @@
     "update:client": "./scripts/update_client.sh",
     "build:client": "./scripts/update_client.sh prod",
     "serve": "gulp dev",
-    "test": "NODE_ENV=test mocha -r ts-node/register src/**/*.spec.ts"
+    "test": "NODE_ENV=test mocha -r ts-node/register 'src/**/*.spec.ts'"
   },
   "engines": {
     "node": "7.9"

@@ -1,20 +1,11 @@
 import { User } from '../../../database/models/user';
-import { config } from '../../../config';
-import { databaseInit } from '../../../database/database';
-import { start } from '../../../server';
 
-import * as supertest from 'supertest';
 import * as assert from 'assert';
+import * as supertest from 'supertest';
 
 const server = supertest.agent("http://localhost:3000");
 
 describe('Auth', () => {
-  before(async () => { //Before each test we empty the database
-    await databaseInit().then(start).then((app) => {
-      app.listen(config.port, config.host);
-    });
-  });
-
   afterEach(async () => {
     await User.remove({});
   })
