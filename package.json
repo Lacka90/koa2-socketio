@@ -7,7 +7,8 @@
     "start": "rm -rf ./dist && gulp && node ./dist/index.js",
     "update:client": "./scripts/update_client.sh",
     "build:client": "./scripts/update_client.sh prod",
-    "serve": "gulp dev"
+    "serve": "gulp dev",
+    "test": "NODE_ENV=test mocha -r ts-node/register 'src/**/*.spec.ts'"
   },
   "engines": {
     "node": "7.9"
@@ -26,10 +27,14 @@
   },
   "homepage": "https://github.com/Lacka90/koa2-socketio#readme",
   "dependencies": {
+    "@types/assert": "^0.0.31",
     "@types/boom": "^4.3.1",
     "@types/jsonwebtoken": "^7.2.0",
     "@types/lodash": "^4.14.63",
+    "@types/mocha": "^2.2.41",
     "@types/node": "^7.0.13",
+    "@types/supertest": "^2.0.0",
+    "assert": "^1.4.1",
     "bluebird": "^3.5.0",
     "boom": "^4.3.1",
     "convict": "^3.0.0",
@@ -53,8 +58,11 @@
     "koa-static-server": "^1.0.0",
     "koa2-cors": "^2.0.3",
     "lodash": "^4.17.4",
+    "mocha": "^3.3.0",
     "mongoose": "^4.9.5",
     "socket.io": "^1.7.3",
+    "supertest": "^3.0.0",
+    "ts-node": "^3.0.4",
     "typescript": "^2.2.2"
   },
   "devDependencies": {}

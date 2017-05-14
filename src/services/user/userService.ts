@@ -57,21 +57,6 @@ export class UserService {
     return userDao.getAvailableUsers(userId);
   }
 
-  async getRoom(userId: string) {
-    const roomDao = RoomDao.getInstance();
-    return roomDao.getByUserId(userId);
-  }
-
-  async createRoom(userId: string, offer: string) {
-    const roomDao = RoomDao.getInstance();
-    return roomDao.createWithOffer(userId, offer);
-  }
-
-  async connectRoom(userId: string, answer: string) {
-    const roomDao = RoomDao.getInstance();
-    return roomDao.updateWithAnswer(userId, answer);
-  }
-
   async updateSocketId(userId: string, socketId: string) {
     const userDao = UserDao.getInstance();
 

@@ -7,6 +7,7 @@ import { conversationRoute } from './conversation/conversation';
 import { messageRoute } from './message/message';
 import { authRoute } from './auth/auth';
 import { userRoute } from './user/user';
+import { roomRoute } from './room/room';
 
 export async function v1Route() {
   const router = Router();
@@ -17,6 +18,7 @@ export async function v1Route() {
     message: await messageRoute(),
     auth: await authRoute(),
     user: await userRoute(),
+    room: await roomRoute(),
   };
 
   _.forOwn(routes, (value, key) => {

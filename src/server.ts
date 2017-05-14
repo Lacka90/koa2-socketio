@@ -18,7 +18,9 @@ export async function start() {
   const app = new Koa();
 
   app.use(error((err, ctx) => {
-    console.log('DEBUG', JSON.stringify(err, null, 2));
+    if (config.env === 'dev') {
+      console.log('DEBUG', JSON.stringify(err, null, 2));
+    }
     if (err.output) {
       ctx.status = err.output.statusCode;
       ctx.body = err.output.payload.message;
@@ -39,5 +41,5 @@ export async function start() {
 
   socketInit(app);
 
-  app.listen(config.port, config.host);
+  return app;
 }
