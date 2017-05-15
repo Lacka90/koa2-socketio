@@ -12,7 +12,7 @@ export class UserDao {
   
   async getById(userId: string) {
     const user = await User.findById(userId);
-    return User.findById(userId).lean();
+    return User.findById(userId);
   }
 
   async getBySocketId(socketId: string) {

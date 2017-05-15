@@ -6,7 +6,7 @@ import { RoomService } from '@core/services/room/roomService';
 export async function roomRoute() {
   const router = Router();
 
-  router.post('/room/offer', async (ctx) => {
+  router.post('/offer', async (ctx) => {
     const userId = ctx.request.body['userId'];
     const connection = ctx.request.body['connection'];
     if (!userId) {
@@ -17,7 +17,7 @@ export async function roomRoute() {
     ctx.body = { room };
   });
 
-  router.put('/room/answer', async (ctx) => {
+  router.put('/answer', async (ctx) => {
     const userId = ctx.request.body['userId'];
     const connection = ctx.request.body['connection'];
     if (!userId) {
@@ -30,7 +30,7 @@ export async function roomRoute() {
     ctx.body = { room };
   });
 
-  router.get('/room/:userId', async (ctx) => {
+  router.get('/:userId', async (ctx) => {
     const userId = ctx.params.userId;
     if (!userId) {
       throw Boom.notFound('UserId not found');
@@ -40,13 +40,16 @@ export async function roomRoute() {
     ctx.body = { room };
   });
 
-  router.get('/room', async (ctx) => {
+  router.get('/', async (ctx) => {
     const userId = ctx.userId;
     if (!userId) {
       throw Boom.notFound('UserId not found');
     }
     const roomService = RoomService.getInstance();
     const room = await roomService.getRoom(userId);
+    if (!room) {
+      throw Boom.notFound('Room not found');
+    }
     ctx.body = { room };
   });
 
