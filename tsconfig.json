@@ -1,14 +1,18 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
-        "lib": ["es2015"],
+        "lib": ["es2015", "dom"],
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "outDir": "build",
         "typeRoots": [
             "node_modules/@types"
-        ]
+        ],
+        "baseUrl": "./src",
+        "paths": {
+            "@core/*": [ "./*" ] 
+        }
     },
     "include": [
         "src"

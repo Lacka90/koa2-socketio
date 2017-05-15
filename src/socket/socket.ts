@@ -1,4 +1,4 @@
-import { UserService } from './../services/user/userService';
+import { UserService } from '@core/services/user/userService';
 import * as Http from 'http';
 
 import * as Socket from 'koa-socket';
@@ -15,10 +15,10 @@ export function socketInit(app) {
     ctx.socket.on('disconnect', async (data) => {
       const userService = UserService.getInstance();
       const user = await userService.getBySocketId(ctx.socket.id);
-      await userService.updateSocketId(user._id, null);
+      await userService.updateSocketId(user.id, null);
       delete sockets[ctx.socket.id];
 
-      io.broadcast('userDisconnected', { userId: user._id });
+      io.broadcast('userDisconnected', { userId: user.id });
     });
 
     ctx.socket.on('socketChange', async (data) => {
@@ -31,7 +31,7 @@ export function socketInit(app) {
   });
 }
 
-export async function sendMessage(userId: string, subject: string, message: string) {
+export async function sendMessage(userId: string, subject: string, message: any) {
   const userService = UserService.getInstance();
   const user = await userService.getById(userId);
 

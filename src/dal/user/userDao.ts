@@ -1,4 +1,4 @@
-import { User } from './../../database/models/user';
+import { User } from '@core/database/models/user';
 
 export class UserDao {
   private static instance: UserDao = null;
@@ -11,6 +11,7 @@ export class UserDao {
   }
   
   async getById(userId: string) {
+    const user = await User.findById(userId);
     return User.findById(userId).lean();
   }
 
@@ -22,7 +23,7 @@ export class UserDao {
     return User.findOne({
       username,
       password,
-    }).lean();
+    });
   }
 
   async create(user: any) {
@@ -32,7 +33,7 @@ export class UserDao {
   async getAvailableUsers(userId: string) {
     return User.find({
       $and: [
-        { _id: { $ne: userId } },
+        { id: { $ne: userId } },
         { socketId: { $ne: null } },
       ],
     });

@@ -1,5 +1,6 @@
 {
     "database": {
+        "url": "mongodb://localhost:32667",
         "collectionName": "ionic-webrtc"
     }
 }

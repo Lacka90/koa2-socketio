@@ -1,7 +1,8 @@
-import * as Boom from 'boom';
 import * as _ from 'lodash';
-import { UserService } from './../user/userService';
-import { AuthDao } from '../../dal/auth/authDao';
+import * as Boom from 'boom';
+
+import { AuthDao } from '@core/dal/auth/authDao';
+import { UserService } from '@core/services/user/userService';
 
 export class AuthService {
   private static instance: AuthService = null;
@@ -35,7 +36,7 @@ export class AuthService {
       throw Boom.notFound('user not found');
     }
 
-    return user._id;
+    return user.id;
   }
 
   async register(username: string, password: string) {

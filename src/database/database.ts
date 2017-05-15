@@ -1,15 +1,17 @@
+import * as bluebird from 'bluebird';
 import * as Mongoose from 'mongoose';
 import { Mockgoose } from 'mockgoose';
-import * as bluebird from 'bluebird';
-import { config } from '../config';
+import { config } from '@core/config';
+import { baseOptionsPlugin } from './baseOptions'
 
-async function init(isTest: boolean) {
-  const baseUrl = isTest ? 'mongodb://localhost:32769' : config.database.url;
+Mongoose.plugin(baseOptionsPlugin);
+
+async function init() {
+  const baseUrl = config.database.url;
   const uri = `${baseUrl}/${config.database.collectionName}`;
-  console.log(uri)
 
-  if (isTest) {
-    const mockgoose = new Mockgoose(Mongoose); // tslint:disable-line
+  if (config.env === 'test') {
+    const mockgoose = new Mockgoose(Mongoose);
 
     return mockgoose.prepareStorage().then(() => {
       return new Promise((resolve, reject) => {
@@ -36,8 +38,8 @@ async function init(isTest: boolean) {
 }
 
 let initPromise;
-export function databaseInit(isTest = false) {
+export function databaseInit() {
   return initPromise || (initPromise = (async () => {
-    await init(isTest);
+    await init();
   })());
 }

@@ -1,7 +1,7 @@
 import * as Boom from 'boom';
 import * as Router from 'koa-router';
-import { RoomService } from './../../../services/room/roomService';
-import { sendMessage } from '../../../socket/socket';
+import { sendMessage } from '@core/socket/socket';
+import { RoomService } from '@core/services/room/roomService';
 
 export async function roomRoute() {
   const router = Router();

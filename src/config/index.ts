@@ -1,10 +1,12 @@
 import * as path from 'path';
-import * as convict from 'convict';
 import * as dotenv from 'dotenv';
+import * as convict from 'convict';
 
-dotenv.config({
-  silent: true,
-});
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({
+    silent: true,
+  });
+}
 
 /**
  * Schema of the config file made with convict
@@ -75,7 +77,7 @@ const conf = convict({
 
 // Load environment dependent configuration
 const env = conf.get('env');
-conf.loadFile(path.normalize(`${__dirname}/${env}.json`));
+conf.loadFile(path.normalize(`${__dirname}/../../config/${env}.json`));
 
 // Perform validation
 conf.validate({allowed: 'strict'});

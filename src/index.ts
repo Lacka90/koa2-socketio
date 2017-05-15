@@ -1,3 +1,5 @@
+require('module-alias/register');
+
 import { databaseInit } from './database/database';
 import { start } from './server';
 import { config } from './config';

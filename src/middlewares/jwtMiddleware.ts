@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-import { config } from '../config';
+import { config } from '@core/config';
 
 function jwtVerify(token, secret): Promise<any> {
   return new Promise((resolve, reject) => jwt.verify(
