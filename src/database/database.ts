@@ -1,18 +1,9 @@
+import * as bluebird from 'bluebird';
 import * as Mongoose from 'mongoose';
 import { Mockgoose } from 'mockgoose';
-import * as bluebird from 'bluebird';
-import { config } from '../config';
+import { config } from '@core/config';
+import { baseOptionsPlugin } from './baseOptions'
 
-function baseOptionsPlugin (schema: Mongoose.Schema) {
-  schema.set('timestamps', true);
-  schema.set('versionKey', false);
-  schema.set('toJSON', {
-    virtuals: true,
-  });
-  schema.set('toObject', {
-    virtuals: true,
-  });
-}
 
 Mongoose.plugin(baseOptionsPlugin);
 

@@ -1,8 +1,7 @@
-import { User } from '../../../database/models/user';
-import { config } from '../../../config';
-
-import * as supertest from 'supertest';
 import * as assert from 'assert';
+import * as supertest from 'supertest';
+
+import { User } from '@core/database/models/user';
 
 const server = supertest.agent("http://localhost:3000");
 

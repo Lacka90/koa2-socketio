@@ -1,4 +1,4 @@
-import { UserService } from './../services/user/userService';
+import { UserService } from '@core/services/user/userService';
 import * as Http from 'http';
 
 import * as Socket from 'koa-socket';

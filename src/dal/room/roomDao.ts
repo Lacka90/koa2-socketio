@@ -1,5 +1,5 @@
-import { Room } from './../../database/models/room';
 import { IRoom } from '@core/types/IRoom.d';
+import { Room } from '@core/database/models/room';
 
 export class RoomDao {
   private static instance: RoomDao = null;

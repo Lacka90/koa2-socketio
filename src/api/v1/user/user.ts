@@ -1,6 +1,6 @@
 import * as Boom from 'boom';
 import * as Router from 'koa-router';
-import { UserService } from './../../../services/user/userService';
+import { UserService } from '@core/services/user/userService';
 
 export async function userRoute() {
   const router = Router();

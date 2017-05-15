@@ -1,7 +1,7 @@
 import * as Boom from 'boom';
-import { UserDao } from '../../dal/user/userDao';
-import { RoomDao } from '../../dal/room/roomDao';
 import { IUser } from '@core/types/IUser';
+import { UserDao } from '@core/dal/user/userDao';
+import { RoomDao } from '@core/dal/room/roomDao';
 
 export class UserService {
   private static instance: UserService = null;

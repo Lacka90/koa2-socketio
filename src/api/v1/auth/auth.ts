@@ -1,13 +1,12 @@
 import * as Boom from 'boom';
-import { AuthService } from './../../../services/auth/authService';
-import { jwtSign } from '../../../middlewares/jwtMiddleware';
 import * as Router from 'koa-router';
+import { jwtSign } from '@core/middlewares/jwtMiddleware';
+import { AuthService } from '@core/services/auth/authService';
 
 export async function authRoute() {
   const router = Router();
 
   router.get('/whoami', async (ctx) => {
-    // console.log(ctx);
     const userId = ctx.userId;
     if (!userId) {
       throw Boom.notFound('UserId not found');

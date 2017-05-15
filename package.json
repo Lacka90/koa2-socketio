@@ -8,7 +8,7 @@
     "update:client": "./scripts/update_client.sh",
     "build:client": "./scripts/update_client.sh prod",
     "serve": "gulp dev",
-    "test": "NODE_ENV=test mocha -r ts-node/register 'src/**/*.spec.ts'"
+    "test": "NODE_ENV=test mocha --compilers ts:ts-node/register -r tsconfig-paths/register 'src/**/*.spec.ts'"
   },
   "engines": {
     "node": "7.9"
@@ -67,5 +67,7 @@
     "ts-node": "^3.0.4",
     "typescript": "^2.2.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "tsconfig-paths": "^2.1.2"
+  }
 }

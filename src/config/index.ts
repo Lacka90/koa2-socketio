@@ -1,6 +1,6 @@
 import * as path from 'path';
-import * as convict from 'convict';
 import * as dotenv from 'dotenv';
+import * as convict from 'convict';
 
 dotenv.config({
   silent: true,

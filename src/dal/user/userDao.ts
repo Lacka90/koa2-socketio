@@ -1,4 +1,4 @@
-import { User } from './../../database/models/user';
+import { User } from '@core/database/models/user';
 
 export class UserDao {
   private static instance: UserDao = null;

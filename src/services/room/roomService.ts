@@ -1,4 +1,4 @@
-import { RoomDao } from '../../dal/room/roomDao';
+import { RoomDao } from '@core/dal/room/roomDao';
 
 export class RoomService {
   private static instance: RoomService = null;
