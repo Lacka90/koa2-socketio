@@ -33,7 +33,7 @@ export class UserDao {
   async getAvailableUsers(userId: string) {
     return User.find({
       $and: [
-        { id: { $ne: userId } },
+        { _id: { $ne: userId } },
         { socketId: { $ne: null } },
       ],
     });

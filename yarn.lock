@@ -35,6 +35,10 @@
   dependencies:
     "@types/node" "*"
 
+"@types/chance@^0.7.33":
+  version "0.7.33"
+  resolved "https://registry.yarnpkg.com/@types/chance/-/chance-0.7.33.tgz#9666ae5c8f602a14a67e5b608dabf1a7853a1e28"
+
 "@types/jsonwebtoken@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@types/jsonwebtoken/-/jsonwebtoken-7.2.0.tgz#0fed32c8501da80ac9839d2d403a65c83d776ffd"
@@ -527,6 +531,10 @@ chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1:
     has-ansi "^2.0.0"
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
+
+chance@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.0.8.tgz#201af737c757ef049346ca7ed6a64cdfbd217e41"
 
 chokidar@^1.4.3:
   version "1.6.1"

@@ -3,28 +3,13 @@ import * as supertest from 'supertest';
 
 import { User } from '@core/database/models/user';
 import { Room } from '@core/database/models/room';
+import { generateUsers } from '@core/utils/test/user';
 
 const server = supertest.agent("http://localhost:3000");
 
 describe('Room', () => {
   before(async () => {
-    const regRes = await server
-      .post('/api/v1/auth/register')
-      .send({ username: 'roomuser', password: 'roompass' });
-    assert.equal(regRes.status, 200);
-
-    const loginRes = await server
-      .post('/api/v1/auth/login')
-      .send({ username: 'roomuser', password: 'roompass' });
-    assert.equal(loginRes.status, 200);
-
-    this.token = loginRes.body.token;
-
-    const whoamiRes = await server
-        .get('/api/v1/auth/whoami')
-        .set('Authorization', `Bearer ${this.token}`);
-
-    this.user = whoamiRes.body.user;
+    this.users = await generateUsers(3, server);
   });
 
   afterEach(async () => {
@@ -35,29 +20,55 @@ describe('Room', () => {
     await User.remove({});
   });
 
+  async function getOfferAnswer(type: 'offer' | 'answer', token: string, userId: string, connection: string) {
+    const offerRes = await server
+      .post(`/api/v1/room/${type}`)
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        userId,
+        connection,
+      });
+
+    return server
+      .get('/api/v1/room')
+      .set('Authorization', `Bearer ${token}`);
+  }
+
   describe('/GET room', () => {
     it('user should not GET room object', async () => {
+      const user = this.users.pop();
       const roomRes = await server
         .get('/api/v1/room')
-        .set('Authorization', `Bearer ${this.token}`);
+        .set('Authorization', `Bearer ${user.token}`);
 
       assert.equal(roomRes.status, 404);
     });
 
-    it('user should GET room object', async () => {
-      const offerRes = await server
-        .post('/api/v1/room/offer')
-        .set('Authorization', `Bearer ${this.token}`)
-        .send({
-          userId: this.user.id,
-          connection: 'connection str',
-        });
+    it('user should offer room', async () => {
+      const user = this.users.pop();
+      const connectionStr = 'connection offer';
 
-      const roomRes = await server
-        .get('/api/v1/room')
-        .set('Authorization', `Bearer ${this.token}`);
+      const roomRes = await getOfferAnswer('offer', user.token, user.user.id, connectionStr);
 
       assert.equal(roomRes.status, 200);
+      const room = roomRes.body.room;
+      assert.equal(room.offer, connectionStr);
+    });
+
+    it('user should answer room', async () => {
+      const user = this.users.pop();
+      const connectionOffer = 'connection offer';
+      const connectionAnswer = 'connection answer';
+
+      const offerRes = await getOfferAnswer('offer', user.token, user.user.id, connectionOffer);
+      assert.equal(offerRes.status, 200);
+      const room = offerRes.body.room;
+      assert.equal(room.offer, connectionOffer);
+
+      const answerRes = await getOfferAnswer('answer', user.token, user.user.id, connectionAnswer);
+      assert.equal(answerRes.status, 200);
+      const updatedRoom = answerRes.body.room;
+      assert.equal(updatedRoom.answer, connectionAnswer);
     });
   });
 });

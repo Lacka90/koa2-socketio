@@ -17,7 +17,7 @@ export async function roomRoute() {
     ctx.body = { room };
   });
 
-  router.put('/answer', async (ctx) => {
+  router.post('/answer', async (ctx) => {
     const userId = ctx.request.body['userId'];
     const connection = ctx.request.body['connection'];
     if (!userId) {
