@@ -4,11 +4,14 @@
   "description": "node koa2 app with socket.io communication",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf ./dist && gulp && node ./dist/index.js",
+    "start": "rm -rf ./dist && gulp && NODE_ENV=production node ./dist/index.js",
     "update:client": "./scripts/update_client.sh",
     "build:client": "./scripts/update_client.sh prod",
-    "serve": "gulp dev",
+    "serve": "NODE_ENV=dev gulp dev",
     "test": "NODE_ENV=test mocha --compilers ts:ts-node/register -r tsconfig-paths/register 'src/**/*.spec.ts'"
+  },
+  "_moduleAliases": {
+    "@core": "dist"
   },
   "engines": {
     "node": "7.9"
@@ -61,6 +64,7 @@
     "lodash": "^4.17.4",
     "mocha": "^3.3.0",
     "mockgoose": "^7.3.1",
+    "module-alias": "^2.0.0",
     "mongoose": "^4.9.5",
     "socket.io": "^1.7.3",
     "supertest": "^3.0.0",

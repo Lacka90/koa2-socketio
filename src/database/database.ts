@@ -4,11 +4,10 @@ import { Mockgoose } from 'mockgoose';
 import { config } from '@core/config';
 import { baseOptionsPlugin } from './baseOptions'
 
-
 Mongoose.plugin(baseOptionsPlugin);
 
 async function init(isTest: boolean) {
-  const baseUrl = isTest ? 'mongodb://localhost:32769' : config.database.url;
+  const baseUrl = isTest ? 'mongodb://local-mock' : config.database.url;
   const uri = `${baseUrl}/${config.database.collectionName}`;
 
   if (isTest) {

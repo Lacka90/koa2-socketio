@@ -1,0 +1,6 @@
+{
+    "database": {
+        "url": "mongodb://localhost:32667",
+        "collectionName": "dev-webrtc"
+    }
+}
