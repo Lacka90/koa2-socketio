@@ -8,7 +8,11 @@
         "outDir": "build",
         "typeRoots": [
             "node_modules/@types"
-        ]
+        ],
+        "baseUrl": "./src",
+        "paths": {
+            "@core/*": [ "./*" ] 
+        }
     },
     "include": [
         "src"
