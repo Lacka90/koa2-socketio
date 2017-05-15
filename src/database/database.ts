@@ -6,11 +6,11 @@ import { baseOptionsPlugin } from './baseOptions'
 
 Mongoose.plugin(baseOptionsPlugin);
 
-async function init(isTest: boolean) {
-  const baseUrl = isTest ? 'mongodb://local-mock' : config.database.url;
+async function init() {
+  const baseUrl = config.database.url;
   const uri = `${baseUrl}/${config.database.collectionName}`;
 
-  if (isTest) {
+  if (config.env === 'test') {
     const mockgoose = new Mockgoose(Mongoose);
 
     return mockgoose.prepareStorage().then(() => {
@@ -38,8 +38,8 @@ async function init(isTest: boolean) {
 }
 
 let initPromise;
-export function databaseInit(isTest = false) {
+export function databaseInit() {
   return initPromise || (initPromise = (async () => {
-    await init(isTest);
+    await init();
   })());
 }

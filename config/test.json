@@ -1,5 +1,6 @@
 {
     "database": {
+        "url": "mongodb://local-test",
         "collectionName": "test-webrtc"
     }
 }
