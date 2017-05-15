@@ -35,7 +35,7 @@ export class AuthService {
       throw Boom.notFound('user not found');
     }
 
-    return user._id;
+    return user.id;
   }
 
   async register(username: string, password: string) {

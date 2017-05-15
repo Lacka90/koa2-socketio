@@ -7,6 +7,7 @@ export async function authRoute() {
   const router = Router();
 
   router.get('/whoami', async (ctx) => {
+    // console.log(ctx);
     const userId = ctx.userId;
     if (!userId) {
       throw Boom.notFound('UserId not found');

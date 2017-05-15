@@ -1,4 +1,5 @@
 import { Room } from './../../database/models/room';
+import { IRoom } from '@core/types/IRoom.d';
 
 export class RoomDao {
   private static instance: RoomDao = null;
@@ -11,15 +12,17 @@ export class RoomDao {
   }
   
   async getByUserId(userId: string) {
-    return Room.findOne({
+    const room = await Room.findOne({
       owner: userId,
-    }).lean();
+    });
+
+    return room as IRoom;
   }
 
   async createWithOffer(userId: string, offer: string) {
     const room = await this.getByUserId(userId);
     if (room) {
-      return Room.findByIdAndUpdate(room._id, {
+      return Room.findByIdAndUpdate(room.id, {
         offer,
         answer: null,
       });
