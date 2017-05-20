@@ -36,11 +36,9 @@ export async function sendMessage(userId: string, subject: string, message: any)
   const userService = UserService.getInstance();
   const user = await userService.getById(userId);
 
-  console.log(user);
   if (user.socketId) {
     const sockets = io.sockets.connected;
     const socket = sockets[user.socketId];
-    console.log(socket);
     if (socket) {
       socket.emit(subject, message);
     }
