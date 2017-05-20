@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
+import * as Http from 'http';
 import * as Koa from 'koa';
 import * as mount from 'koa-mount';
 import * as Router from 'koa-router';
@@ -14,7 +15,7 @@ import { jwtMiddleware } from './middlewares/jwtMiddleware';
 import { api } from './api/api';
 import { socketInit } from './socket/socket';
 
-export async function start() {
+export async function start(): Promise<Http.Server> {
   const app = new Koa();
 
   app.use(error((err, ctx) => {
@@ -39,7 +40,7 @@ export async function start() {
 
   app.use(mount('/api', await api()));
 
-  socketInit(app);
+  const server = socketInit(app);
 
-  return app;
+  return server;
 }

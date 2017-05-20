@@ -20,6 +20,7 @@ export async function roomRoute() {
   router.post('/answer', async (ctx) => {
     const userId = ctx.request.body['userId'];
     const connection = ctx.request.body['connection'];
+    console.log(userId, connection);
     if (!userId) {
       throw Boom.notFound('UserId not found');
     }
