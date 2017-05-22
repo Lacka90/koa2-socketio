@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd webapp
-if [ $1 == "prod" ]
+if [ "$1" == "prod" ]
 then
   echo "Production build"
   npm run ionic:build --prod
